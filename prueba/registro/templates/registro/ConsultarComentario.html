@@ -1,0 +1,50 @@
+{% extends "inicio/cuerpo.html" %}
+{% block titulo %} COMENTARIOS {% endblock %}   
+{% block imagen%} 
+   {% load static %}  
+   {%static 'inicio/imagenes/registra.png'%}
+   {% endblock %} 
+{% block text%} 
+<div class="user-info">
+     <h4> Pagina Comentarios </h4> 
+     
+</div>       
+{% endblock %}  
+{% block encabezado%}
+<!-- Encabezado de la página -->
+<div class="page-header">
+    <div class="page-title">
+        <h3>Comentarios
+            <small>Lista de Comentarios</small>
+        </h3>
+    </div>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<table class="table table-bordered table-striped">
+   <thead>
+      <tr>
+         <th>usuario</th>
+         <th>Mensaje</th>
+         <th></th>
+         <th></th>
+         
+      </tr>
+   </thead>
+   <tbody>
+    {% for ComentarioContacto in ComentariosContactos %}
+      <tr>
+         <td class="text-semibold">{{ComentarioContacto.usuario}}</td>
+         <td class="muted">{{ComentarioContacto.mensaje}}</td>
+         <td class="text-center">
+            <a href="{%url 'ConsultaIndividual' ComentarioContacto.id%}">Editar</a>
+         </td>
+         <td  class="text-center"> 
+         <a href="{%url 'Eliminar' ComentarioContacto.id%}">Eliminar</a>
+      </td>
+      </tr>
+      {% endfor %}
+   </tbody>
+</table>
+{% endblock %}
